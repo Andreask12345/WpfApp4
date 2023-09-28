@@ -10,8 +10,9 @@ namespace WpfApp4
     public partial class MainWindow : Window
     {
         private List<Pizza> cart = new List<Pizza>();
+        private List<Drink> drinkCart = new List<Drink>();
         private decimal totalPrice = 0.0m;
-        private ToppingsWindow toppingsWindow;
+        private ToppingsWindow? toppingsWindow;
 
         public MainWindow()
         {
@@ -40,23 +41,8 @@ namespace WpfApp4
             if (PizzaListBox.SelectedItem != null)
             {
                 ListBoxItem selectedItem = (ListBoxItem)PizzaListBox.SelectedItem;
-                string pizzaName = selectedItem.Content.ToString();
-                decimal pizzaPrice = 20.0m;
-
-                // Set prices for different pizzas
-                if (pizzaName == "Pizza Margherita")
-                {
-                    pizzaPrice = 20.0m;
-                }
-                else if (pizzaName == "Pizza Pepperoni")
-                {
-                    pizzaPrice = 22.0m;
-                }
-                else if (pizzaName == "Another Pizza Name")
-                {
-                    pizzaPrice = 25.0m; 
-                }
-
+                string pizzaName = selectedItem?.Content?.ToString() ?? "Default Pizza Name";
+                decimal pizzaPrice = 55.0m;
 
                 toppingsWindow = new ToppingsWindow();
                 bool? toppingResult = toppingsWindow.ShowDialog();
@@ -65,16 +51,83 @@ namespace WpfApp4
                 {
                     bool extraCheeseSelected = toppingsWindow.ExtraCheeseSelected;
                     bool extraBaconSelected = toppingsWindow.ExtraBaconSelected;
+                    bool extraMozzarellaCheeseSelected = toppingsWindow.ExtraMozzarellaCheeseSelected;
+                    bool extraPepperoniSelected = toppingsWindow.ExtraPepperoniSelected;
+                    bool extraMushroomsSelected = toppingsWindow.ExtraMushroomsSelected;
+                    bool extraOnionsSelected = toppingsWindow.ExtraOnionsSelected;
+                    bool extraOlivesSelected = toppingsWindow.ExtraOlivesSelected;
+                    bool extraSausageSelected = toppingsWindow.ExtraSausageSelected;
+                    bool extraHamSelected = toppingsWindow.ExtraHamSelected;
+                    bool extraPineappleSelected = toppingsWindow.ExtraPineappleSelected;
+                    bool extraSpinachSelected = toppingsWindow.ExtraSpinachSelected;
+                    bool extraJalapenosSelected = toppingsWindow.ExtraJalapenosSelected;
+                    bool extraAnchoviesSelected = toppingsWindow.ExtraAnchoviesSelected;
 
                     if (extraCheeseSelected)
                     {
                         pizzaName += " + Cheese";
-                        pizzaPrice += 8.0m; 
+                        pizzaPrice += 8.0m;
                     }
 
                     if (extraBaconSelected)
                     {
                         pizzaName += " + Bacon";
+                        pizzaPrice += 8.0m;
+                    }
+
+                    if (extraMozzarellaCheeseSelected)
+                    {
+                        pizzaName += " + MozzarellaCheese";
+                        pizzaPrice += 8.0m;
+                    }
+                    if (extraPepperoniSelected)
+                    {
+                        pizzaName += " + Pepperoni";
+                        pizzaPrice += 8.0m;
+                    }
+                    if (extraMushroomsSelected)
+                    {
+                        pizzaName += " + Mushrooms";
+                        pizzaPrice += 8.0m;
+                    }
+                    if (extraOnionsSelected)
+                    {
+                        pizzaName += " + Onions";
+                        pizzaPrice += 8.0m;
+                    }
+                    if (extraOlivesSelected)
+                    {
+                        pizzaName += " + Olives";
+                        pizzaPrice += 8.0m;
+                    }
+                    if (extraSausageSelected)
+                    {
+                        pizzaName += " + Sausage";
+                        pizzaPrice += 8.0m;
+                    }
+                    if (extraHamSelected)
+                    {
+                        pizzaName += " + Ham";
+                        pizzaPrice += 8.0m;
+                    }
+                    if (extraPineappleSelected)
+                    {
+                        pizzaName += " + Pineapple";
+                        pizzaPrice += 8.0m;
+                    }
+                    if (extraSpinachSelected)
+                    {
+                        pizzaName += " + Spinach";
+                        pizzaPrice += 8.0m;
+                    }
+                    if (extraJalapenosSelected)
+                    {
+                        pizzaName += " + Jalapenos";
+                        pizzaPrice += 8.0m;
+                    }
+                    if (extraAnchoviesSelected)
+                    {
+                        pizzaName += " + Anchovies";
                         pizzaPrice += 8.0m;
                     }
                 }
@@ -85,16 +138,26 @@ namespace WpfApp4
                 CartListBox.Items.Add(pizzaName);
                 totalPrice += pizzaPrice;
                 UpdateTotalPrice();
+
+                PizzaListBox.SelectedIndex = -1;
             }
         }
 
 
+        private void AddDrinkToCart(string drinkName, decimal drinkPrice)
+        {
+            Drink drink = new Drink(drinkName, drinkPrice);
+            drinkCart.Add(drink);
+            CartListBox.Items.Add(drinkName);
+            totalPrice += drinkPrice;
+            UpdateTotalPrice();
+        }
 
         private void Buy_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                OrderSummaryWindow orderSummaryWindow = new OrderSummaryWindow(cart, totalPrice);
+                OrderSummaryWindow orderSummaryWindow = new OrderSummaryWindow(cart, drinkCart, totalPrice);
                 orderSummaryWindow.ShowDialog();
             }
             catch (Exception ex)
@@ -105,7 +168,25 @@ namespace WpfApp4
 
         private void UpdateTotalPrice()
         {
-            TotalPriceTextBlock.Text = "Total pris: " + totalPrice.ToString("C");
+            TotalPriceTextBlock.Text = "Total price: " + totalPrice.ToString("C");
         }
+
+        private void AddDrink_Click(object sender, RoutedEventArgs e)
+        {
+            if (DrinksListBox.SelectedItem != null)
+            {
+                ListBoxItem selectedDrinkItem = (ListBoxItem)DrinksListBox.SelectedItem;
+                string? drinkName = selectedDrinkItem?.Content?.ToString();
+                decimal drinkPrice = (decimal)(selectedDrinkItem?.Tag ?? 0.0m);
+
+                if (!string.IsNullOrEmpty(drinkName))
+                {
+                    AddDrinkToCart(drinkName, drinkPrice);
+                }
+            }
+        }
+
     }
 }
+
+// Resten af din kode for Drink, ToppingsWindow, OrderSummaryWindow og Pizza klasser følger her...
