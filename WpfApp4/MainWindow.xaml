@@ -84,7 +84,7 @@
                             <ListBoxItem Content="Nr. 1 - Pizza Margeritta" Tag="0.55"/>
                             <ListBoxItem Content="Nr. 2 - Pizza Pepperoni" Tag="0.65"/>
                             <ListBoxItem Content="Nr. 3 - Pizza Bolognese" Tag="0.65"/>
-                            <ListBoxItem Content="Nr. 4 - Pizza jVegetar" Tag="0.65"/>
+                            <ListBoxItem Content="Nr. 4 - Pizza Vegetar" Tag="0.65"/>
                             <ListBoxItem Content="Nr. 5 - Pizza Mexicana  " Tag="0.65"/>
                             <ListBoxItem Content="Nr. 6 - Pizza Bearnaise  " Tag="0.65"/>
                             <ListBoxItem Content="Nr. 7 - Pizza Bella Italia " Tag="0.65"/>
