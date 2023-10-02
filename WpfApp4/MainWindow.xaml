@@ -64,17 +64,23 @@
                 <ColumnDefinition Width="461*"/>
             </Grid.ColumnDefinitions>
 
-            <Button Style="{StaticResource RoundedButtonStyle}" Content="Tilføj til kurv" HorizontalAlignment="Left" VerticalAlignment="Top" Width="339" Height="43" Margin="265,10,0,0" Click="AddToCart_Click" Grid.Column="1"/>
-            <ListBox Name="CartListBox" HorizontalAlignment="Left" VerticalAlignment="Center" Width="277" Height="361" Margin="609,0,0,0" Grid.Column="1"/>
+            <ListBox Name="CartListBox" FontSize="15" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Center" Width="277" Height="361" Margin="609,0,0,0" Grid.Column="1"/>
             <Button Style="{StaticResource RoundedButtonStyle}" Content="Køb" HorizontalAlignment="Left" VerticalAlignment="Top" Width="277" Height="70" Margin="609,461,0,0" Click="Buy_Click" Grid.Column="1"/>
             <TextBlock FontSize="26" Name="TotalPriceTextBlock" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="265,480,0,0" Height="62" Grid.Column="1"/>
 
             <TabControl Grid.ColumnSpan="2" Margin="0,0,714,0">
                 <TabItem Header="Pizzas">
                     <Grid>
-                        <ListBox Name="PizzaListBox" HorizontalAlignment="Left" VerticalAlignment="Center" Width="276" Height="514" Margin="10,0,0,0"
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="33*"/>
+                            <ColumnDefinition Width="62*"/>
+                            <ColumnDefinition Width="95*"/>
+                            <ColumnDefinition Width="95*"/>
+                        </Grid.ColumnDefinitions>
+                        <Button Style="{StaticResource RoundedButtonStyle}" Content="Tilføj til kurv" HorizontalAlignment="Center" VerticalAlignment="Top" Width="266" Height="79" Margin="0,419,0,0" Click="AddToCart_Click" Panel.ZIndex="2" Grid.Column="2"/>
+                        <ListBox Name="PizzaListBox" HorizontalAlignment="Left" VerticalAlignment="Top" Width="276" Height="414" Margin="10,0,0,0"
                                  ItemContainerStyle="{StaticResource PizzaListBoxItemStyle}"
-                                 ItemTemplate="{StaticResource PizzaListBoxItemTemplate}" Grid.ColumnSpan="2">
+                                 ItemTemplate="{StaticResource PizzaListBoxItemTemplate}" Grid.ColumnSpan="4">
                             <ListBoxItem Content="Nr. 1 - Pizza Margeritta" Tag="0.55"/>
                             <ListBoxItem Content="Nr. 2 - Pizza Pepperoni" Tag="0.65"/>
                             <ListBoxItem Content="Nr. 3 - Pizza Bolognese" Tag="0.65"/>
@@ -112,18 +118,27 @@
                     </Grid>
                 </TabItem>
 
-                <TabItem Header="Drinks">
+                <TabItem Header="Drinks" Margin="2,-2,-2,0">
                     <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="9*"/>
+                            <ColumnDefinition Width="134*"/>
+                        </Grid.ColumnDefinitions>
+                        <Button Style="{StaticResource RoundedButtonStyle}" Content="Tilføj til kurv" HorizontalAlignment="Left" VerticalAlignment="Top" Width="266" Height="79" Margin="13,419,0,0" Click="AddDrinkToCart" Panel.ZIndex="2" Grid.ColumnSpan="2"/>
                         <ListBox Name="DrinksListBox" HorizontalAlignment="Left" VerticalAlignment="Center" Width="276" Height="514" Margin="10,0,0,0"
-                 ItemContainerStyle="{StaticResource PizzaListBoxItemStyle}"
-                 ItemTemplate="{StaticResource PizzaListBoxItemTemplate}" Grid.ColumnSpan="2">          
-                            <ListBoxItem Content="Coca-Cola" Tag="1.50"/>
-                            <ListBoxItem Content="Pepsi" Tag="1.50"/>
-                            <ListBoxItem Content="Sprite" Tag="1.50"/>
+                        ItemContainerStyle="{StaticResource PizzaListBoxItemStyle}"
+                        ItemTemplate="{StaticResource PizzaListBoxItemTemplate}" Grid.ColumnSpan="2">
+                            <ListBoxItem Content="Water - 0.33L" Tag="0.10"/>
+                            <ListBoxItem Content="Coca-Cola - 0.33L" Tag="0.15"/>
+                            <ListBoxItem Content="Coca-Cola Zero - 0.33L" Tag="0.15"/>
+                            <ListBoxItem Content="Pepsi - 0.33L" Tag="0.15"/>
+                            <ListBoxItem Content="Sprite - 0.33L" Tag="0.15"/>
+                            <ListBoxItem Content="Fanta - 0.33L" Tag="0.15"/>
+                            <ListBoxItem Content="Cocio - 1.25L" Tag="0.25"/>
+
                         </ListBox>
                     </Grid>
                 </TabItem>
-
             </TabControl>
         </Grid>
     </Viewbox>

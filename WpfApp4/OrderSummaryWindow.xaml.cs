@@ -21,5 +21,11 @@ namespace WpfApp4
 
             TotalPriceTextBlock.Text = "Total price: " + totalPrice.ToString("C");
         }
+
+        private void Finalbuy(object sender, RoutedEventArgs e)
+        {
+            System.Diagnostics.Process.Start(System.Diagnostics.Process.GetCurrentProcess().ProcessName);
+            App.Current.Shutdown();
+        }
     }
 }

@@ -1,17 +1,41 @@
 ﻿<Window x:Class="WpfApp4.OrderSummaryWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Order Summary" Height="400" Width="600">
-    
-    <Grid>
-        <ListView Name="OrderListView" HorizontalAlignment="Stretch" VerticalAlignment="Top">
+        Title="Order Summary" Height="420" Width="600">
+
+
+    <Grid Margin="0,0,0,-6">
+        <Grid.Resources>
+            <Style x:Key="RoundedButtonStyle" TargetType="Button">
+                <Setter Property="Background" Value="#FF2ECC71"/>
+                <Setter Property="Foreground" Value="White"/>
+                <Setter Property="Padding" Value="10,5"/>
+                <Setter Property="BorderThickness" Value="0"/>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="Button">
+                            <Border Background="{TemplateBinding Background}" CornerRadius="15">
+                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+                <Style.Triggers>
+                    <Trigger Property="IsMouseOver" Value="True">
+                        <Setter Property="Background" Value="#FF27AE60"/>
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+        </Grid.Resources>
+
+        <ListView Height="280" FontSize="20" FontWeight="Bold" Name="OrderListView" HorizontalAlignment="Stretch" VerticalAlignment="Top" Panel.ZIndex="3">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Pizza" Width="250">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <StackPanel>
-                                    <TextBlock Text="{Binding Name}" />
+                                    <TextBlock Text="{Binding Name}" FontSize="16"/>
                                 </StackPanel>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
@@ -20,6 +44,7 @@
                 </GridView>
             </ListView.View>
         </ListView>
-        <TextBlock Name="TotalPriceTextBlock" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="10,0,0,10"/>
+        <TextBlock FontSize="26" FontWeight="Bold" Name="TotalPriceTextBlock" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="10,0,0,10" Height="70" Panel.ZIndex="2"/>
+        <Button Style="{StaticResource RoundedButtonStyle}" Content="Buy"  HorizontalAlignment="Right" FontSize="40" FontWeight="Bold" VerticalAlignment="Bottom" Width="269" Height="79" Margin="0,0,10,19" Click="Finalbuy" Panel.ZIndex="2"/>
     </Grid>
 </Window>

@@ -135,7 +135,7 @@ namespace WpfApp4
                 Pizza pizza = new Pizza(pizzaName, pizzaPrice);
                 cart.Add(pizza);
 
-                CartListBox.Items.Add(pizzaName);
+                CartListBox.Items.Add(pizzaName + " - " + pizzaPrice + " Kr");
                 totalPrice += pizzaPrice;
                 UpdateTotalPrice();
 
@@ -144,14 +144,37 @@ namespace WpfApp4
         }
 
 
+        private void AddDrinkToCart(object sender, RoutedEventArgs e)
+        {
+            if (DrinksListBox.SelectedItem != null)
+            {
+                ListBoxItem selectedDrinkItem = (ListBoxItem)DrinksListBox.SelectedItem;
+                string drinkName = selectedDrinkItem?.Content?.ToString();
+
+                if (decimal.TryParse(selectedDrinkItem?.Tag?.ToString(), out decimal drinkPrice))
+                {
+                    AddDrinkToCart(drinkName, drinkPrice);
+                }
+                else
+                {
+                    MessageBox.Show("Error: Unable to parse drink price.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
+        }
+
+
         private void AddDrinkToCart(string drinkName, decimal drinkPrice)
         {
             Drink drink = new Drink(drinkName, drinkPrice);
+
             drinkCart.Add(drink);
-            CartListBox.Items.Add(drinkName);
+
+            CartListBox.Items.Add(drinkName + " - " + drinkPrice + " Kr");
+
             totalPrice += drinkPrice;
             UpdateTotalPrice();
         }
+
 
         private void Buy_Click(object sender, RoutedEventArgs e)
         {
@@ -188,5 +211,3 @@ namespace WpfApp4
 
     }
 }
-
-// Resten af din kode for Drink, ToppingsWindow, OrderSummaryWindow og Pizza klasser følger her...
