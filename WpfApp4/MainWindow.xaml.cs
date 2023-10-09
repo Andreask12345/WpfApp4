@@ -36,6 +36,17 @@ namespace WpfApp4
             }
         }
 
+        private void ResetOrder_Click(object sender, RoutedEventArgs e)
+        {
+            cart.Clear();
+            drinkCart.Clear();
+            totalPrice = 0.0m;
+            CartListBox.Items.Clear();
+            UpdateTotalPrice();
+        }
+
+       
+
         private void AddToCart_Click(object sender, RoutedEventArgs e)
         {
             if (PizzaListBox.SelectedItem != null)

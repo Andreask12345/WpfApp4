@@ -65,8 +65,8 @@
             </Grid.ColumnDefinitions>
 
             <ListBox Name="CartListBox" FontSize="15" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Center" Width="277" Height="361" Margin="609,0,0,0" Grid.Column="1"/>
-            <Button Style="{StaticResource RoundedButtonStyle}" Content="Køb" HorizontalAlignment="Left" VerticalAlignment="Top" Width="277" Height="70" Margin="609,461,0,0" Click="Buy_Click" Grid.Column="1"/>
             <TextBlock FontSize="26" Name="TotalPriceTextBlock" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="265,480,0,0" Height="62" Grid.Column="1"/>
+            <Button Style="{StaticResource RoundedButtonStyle}" Content="Køb" HorizontalAlignment="Left" VerticalAlignment="Top" Width="132" Height="42" Margin="754,454,0,0" Click="Buy_Click" Grid.Column="1"/>
 
             <TabControl Grid.ColumnSpan="2" Margin="0,0,714,0">
                 <TabItem Header="Pizzas">
@@ -140,6 +140,7 @@
                     </Grid>
                 </TabItem>
             </TabControl>
+            <Button Style="{StaticResource RoundedButtonStyle}" Content="Reset Order" HorizontalAlignment="Left" VerticalAlignment="Top" Width="132" Height="42" Margin="609,454,0,0" Click="ResetOrder_Click" Grid.Column="1"/>
         </Grid>
     </Viewbox>
 </Window>
